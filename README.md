@@ -33,8 +33,7 @@ some functions are nil for some executers, heres a list of some:
 | identifyexecutor | identifyexecutor(): string |
 | executecode | executecode(code: string): string |
 
-## execute this code to see if you will be supported:
-(unc tester)
+## unc tester:
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/unified-naming-convention/NamingStandard/main/UNCCheckEnv.lua"))()
 ```
