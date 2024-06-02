@@ -18,11 +18,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/ma
 some functions in ouxie are exclusive to some executers, heres a list of some:
 | executor | success |
 | ------ | ------ |
-| Arceus X | 100% / true |
-| Evon | 90-80% / i think |
-| Krampus | 80-70% / maybe some (executecode is nil) |
-| Codex | 50-40% / crappy fr (missing alot of functions) |
-| Others | idk dm if it works on your exploit (list the script) |
+| Codex | 100% / good |
+| Arceus X | 100% / good |
+| Fluxus | 100% / good |
+| Evon | 100-90% / good enough |
+| Krampus | dead |
+| Others | idfk |
 
 ## Requied Functions
 some functions are nil for some executers, heres a list of some:
