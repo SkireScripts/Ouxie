@@ -15,7 +15,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/ma
 ```
 
 ## Supported Executors (or recommended):
-some functions in ouxie are exclusive to some executers, heres a list of some:
+some functions in ouxie are only supported with some executers, heres a list of some:
 | executor | success |
 | ------ | ------ |
 | Codex | 100% / good |
