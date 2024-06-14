@@ -342,4 +342,10 @@ function ouxie:Window(configy)
 	end)
 end
 
+function ouxie:onClose(Callback)
+    script.Parent.UI.topbar.Close.CloseButton.MouseButton1Click:Connect(function()
+		pcall(Callback)
+	end)
+end
+
 return ouxie
