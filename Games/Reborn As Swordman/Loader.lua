@@ -505,10 +505,11 @@ end)
 
 ui:Loading(function()
     if not isfolder("Ouxie") then makefolder("Ouxie")end
-    if isfile("Ouxie/Loaded.txt") then
-        delfile("Ouxie/Loaded.txt")
-        queue_on_teleport("loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Games/Reborn%20As%20Swordman/Loader.lua\"))()")
+    if not isfile("Ouxie/Loaded.txt") then
+        queue_on_teleport("loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Games/Reborn%20As%20Swordman/Loader.lua\"))();if not isfolder(\"Ouxie\") then makefolder(\"Ouxie\")end;writefile(\"Ouxie/Loaded.txt\")")
         game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+    else
+        delfile("Ouxie/Loaded.txt")
     end
 	--game:GetService("ReplicatedStorage").Events.World.Rf_TeleportToWorld:InvokeServer("World001")
 end)
