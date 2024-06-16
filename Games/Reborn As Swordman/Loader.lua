@@ -29,7 +29,7 @@ local bosses = require(game:GetService("ReplicatedStorage").Config.RelicsConfig)
 
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
-local discord = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/Discord%20Inviter/Loader.lua"))()
+local discord = loadstring(game:HttpGet("https://github.com/SkireScripts/Ouxie/blob/main/Projects/Discord%20Inviter/Loader.lua"))()
 local ouxie = loadstring(game:HttpGet("https://pastefy.app/g73xnA2J/raw"))()
 local ui = ouxie:Window({
 	Name = "Ouxie / the game?";
@@ -500,13 +500,13 @@ local antiafk = tab5:Button({
 
 tab1:Switch()
 discord:invite("https://discord.gg/c3AbX3GXsr", "Ouxie", function()
-    ui:load()
+    --ui:load()
 end)
 
 ui:Loading(function()
     if not isfolder("Ouxie") then makefolder("Ouxie")end
     if not isfile("Ouxie/Loaded.txt") then
-        queue_on_teleport("loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Games/Reborn%20As%20Swordman/Loader.lua\"))();if not isfolder(\"Ouxie\") then makefolder(\"Ouxie\")end;writefile(\"Ouxie/Loaded.txt\")")
+        queue_on_teleport("loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Loader-Handler.lua\"))():load(game.PlaceId);if not isfolder(\"Ouxie\") then makefolder(\"Ouxie\")end;writefile(\"Ouxie/Loaded.txt\")")
         game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
     else
         delfile("Ouxie/Loaded.txt")
