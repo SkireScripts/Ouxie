@@ -29,7 +29,7 @@ local bosses = require(game:GetService("ReplicatedStorage").Config.RelicsConfig)
 
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
-local discord = loadstring(game:HttpGet("https://github.com/SkireScripts/Ouxie/blob/main/Projects/Discord%20Inviter/Loader.lua"))()
+local discord = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/Discord%20Inviter/Loader.lua"))()
 local ouxie = loadstring(game:HttpGet("https://pastefy.app/g73xnA2J/raw"))()
 local ui = ouxie:Window({
 	Name = "Ouxie / the game?";
