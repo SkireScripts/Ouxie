@@ -1,11 +1,6 @@
 -- ouxie loader v2
 -- in testing so coding might look bad (dont mind) (no bully)
 local ouxie = {
-    ["required-functions"] = {
-        [1] = getsynasset;
-        [2] = identifyexecutor;
-        [3] = executecode;
-    };
     ["games"] = {
         [14822302723] = "Gun Ball";
         [14708545931] = "Blade Soccer";
@@ -36,13 +31,6 @@ local ouxie = {
             ["source"] = "Pastefy";
         };
     };
-    ["supported"] = {
-        ["Arceus X"] = true;
-        ["Krampus"] = true;
-        ["Evon"] = true;
-        ["Codex"] = false;
-        ["Synapse X"] = false;
-    };
     ["credits"] = {
         ["Creator"] = "Skire";
     };
@@ -52,45 +40,23 @@ local ouxie = {
 }
 
 function ouxie:load(script, config)
-    for i,v in pairs(ouxie["required-functions"]) do
-        if v == nil then
-            warn("unsupported function:", i, "(required-functions table)")
-        end
-    end
     local function get(script, type)
         if type == "game" then
-            if ouxie.using == "github" then
-                local src = string.gsub(ouxie.base.."/Games/"..ouxie.games[script].."/Loader.lua"," ","%%20");
-                loadstring(game:HttpGet(src))()
-            else
-                warn("lol no.")
-            end
+            local src = string.gsub(ouxie.base.."/Games/"..ouxie.games[script].."/Loader.lua"," ","%%20");
+            print(src)
+            loadstring(game:HttpGet(src))()
         elseif type == "project" then
-            if ouxie.using == "github" then
-                local src = string.gsub(ouxie.base.."/Projects/"..ouxie.projects[script].source.."/Loader.lua"," ","%%20");
-                loadstring(game:HttpGet(src))():load(config)
-            else
-                warn("lol no.")
-            end
+            local src = string.gsub(ouxie.base.."/Projects/"..ouxie.projects[script].source.."/Loader.lua"," ","%%20");
+            loadstring(game:HttpGet(src))():load(config)
         end
     end
-    if ouxie.executor ~= "Synapse X" then
-        if ouxie.games[script] then
-            get(script, "game")
-        elseif ouxie.projects[script] then
-            get(script, "project")
-        else
-            print("Unsupported (game) // Invalid (project)")
-        end
+    print(ouxie.games[script])
+    if ouxie.games[script] then
+        get(script, "game")
+    elseif ouxie.projects[script] then
+        get(script, "project")
     else
-        warn("You cant spoof your executor like dat fr (might have errors)")
-        if ouxie.games[script] then
-            get(script, "game")
-        elseif ouxie.projects[script] then
-            get(script, "project")
-        else
-            print("Unsupported (game) // Invalid (project)")
-        end
+        print("Unsupported (game) // Invalid (project)")
     end
 end
 
