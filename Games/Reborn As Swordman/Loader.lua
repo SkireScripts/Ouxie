@@ -32,7 +32,7 @@ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local discord = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/Discord%20Inviter/Loader.lua"))()
 local ouxie = loadstring(game:HttpGet("https://pastefy.app/g73xnA2J/raw"))()
 local ui = ouxie:Window({
-	Name = "Ouxie / the game?";
+	Name = "Ouxie / Reborn As Swordman";
 	Theme = "Default";
 })
 local tab1 = ui:NewTab({
