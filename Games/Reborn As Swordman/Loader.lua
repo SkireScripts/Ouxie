@@ -500,17 +500,10 @@ local antiafk = tab5:Button({
 
 tab1:Switch()
 discord:invite("https://discord.gg/c3AbX3GXsr", "Ouxie", function()
-    --ui:load()
+    ui:load()
 end)
 
 ui:Loading(function()
-    if not isfolder("Ouxie") then makefolder("Ouxie")end
-    if not isfile("Ouxie/Loaded.txt") then
-        queue_on_teleport("loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Loader-Handler.lua\"))():load(game.PlaceId);if not isfolder(\"Ouxie\") then makefolder(\"Ouxie\")end;writefile(\"Ouxie/Loaded.txt\")")
-        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
-    else
-        delfile("Ouxie/Loaded.txt")
-    end
 	--game:GetService("ReplicatedStorage").Events.World.Rf_TeleportToWorld:InvokeServer("World001")
 end)
 ui:onLoaded(function()
