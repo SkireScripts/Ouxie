@@ -504,7 +504,12 @@ discord:invite("https://discord.gg/c3AbX3GXsr", "Ouxie", function()
 end)
 
 ui:Loading(function()
-    game:GetService("ReplicatedStorage").Events.World.Re_Unlock:FireServer("World001")
+    if not isfolder("Ouxie") then makefolder("Ouxie")end
+    if isfile("Ouxie/Loaded.txt") then
+        delfile("Ouxie/Loaded.txt")
+        queue_on_teleport("loadstring(game:HttpGet(\"https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Games/Reborn%20As%20Swordman/Loader.lua\"))()")
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+    end
 	--game:GetService("ReplicatedStorage").Events.World.Rf_TeleportToWorld:InvokeServer("World001")
 end)
 ui:onLoaded(function()
