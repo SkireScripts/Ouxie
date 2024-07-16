@@ -285,191 +285,191 @@ local function initui()
 end
 
 spawn(function()
-    local discord = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/Discord%20Inviter/Loader.lua"))()
-    discord:invite("https://discord.gg/c3AbX3GXsr", "Skires stuff", function()
-        local n = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
-        local ts = game:GetService("TweenService")
-        local ti = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
-        local ui = initui().UI
-        
-        local upperbar = ui.upperbar
-        local bar = ui.bar
-        local max = ui.maximize
-        local mini = upperbar.minimize
-        local settings = upperbar.settings
-        local send = bar.send
-        local clearlogs = bar.clear
-        local box = bar.messagebox
-        
-        pcall(function()
-            n:Notify(
-                {Title = "Simplebypass", Description = "CREDITS:\n\tSkire - Only Dev"},
-                {OutlineColor = Color3.new(255, 255, 255),Time = 7, Type = "image"},
-                {Image = "rbxassetid://18481362660", ImageColor = Color3.fromRGB(255, 255, 255)}
-            )
-        end)
-
-        -- Animations setup
-        local function expand()
-            ts:Create(ui, ti, { Size = UDim2.new(0, 322, 0, 109) }):Play()
-            ts:Create(ui, ti, { Position = UDim2.new(ui.Position.X.Scale, ui.Position.X.Offset + 140, ui.Position.Y.Scale, ui.Position.Y.Offset) }):Play()
-            upperbar.Visible = true
-            bar.Visible = true
-            max.Visible = false
-            ui.logo.Visible = false
-        end
-        
-        local function minimize()
-            ts:Create(ui, ti, { Size = UDim2.new(0, 47, 0, 83) }):Play()
-            ts:Create(ui, ti, { Position = UDim2.new(ui.Position.X.Scale, ui.Position.X.Offset - 140, ui.Position.Y.Scale, ui.Position.Y.Offset) }):Play()
-            upperbar.Visible = false
-            bar.Visible = false
-            max.Visible = true
-            ui.logo.Visible = true
-        end
-        
-        max.MouseButton1Click:Connect(expand)
-        mini.MouseButton1Click:Connect(minimize)
-        
-        -- Event handling for settings, clearlogs, send button interactions
-        settings.MouseEnter:Connect(function()
-            settings.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-        end)
-        settings.MouseLeave:Connect(function()
-            settings.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-        end)
-        
-        clearlogs.MouseEnter:Connect(function()
-            clearlogs.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-            clearlogs.ImageLabel.ImageColor3 = Color3.fromRGB(255, 255, 255)
-        end)
-        clearlogs.MouseLeave:Connect(function()
-            clearlogs.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-            clearlogs.ImageLabel.ImageColor3 = Color3.fromRGB(131,131,131)
-        end)
-        
-        send.MouseEnter:Connect(function()
-            send.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-            send.Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        end)
-        send.MouseLeave:Connect(function()
-            send.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-            send.Frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-        end)
-        
-        -- Dragging functionality
-        local function update(input)
-            local delta = input.Position - dragStart
-            ui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        end
-        
-        ui.InputBegan:Connect(function(input)
-            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-                dragging = true
-                dragStart = input.Position
-                startPos = ui.Position
-        
-                input.Changed:Connect(function()
-                    if input.UserInputState == Enum.UserInputState.End then
-                        dragging = false
-                    end
-                end)
-            end
-        end)
-        
-        ui.InputChanged:Connect(function(input)
-            if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-                dragInput = input
-            end
-        end)
-        
-        game:GetService("UserInputService").InputChanged:Connect(function(input)
-            if input == dragInput and dragging then
-                update(input)
-            end
-        end)
-        
-        -- Main functionality (assuming this is where you have your main logic)
-        pcall(function()
-            local tcs = game:GetService("TextChatService")
-            local chat = tcs.ChatInputBarConfiguration.TargetTextChannel
-            
-            local function replace(str, find_str, replace_str)
-                local escaped_find_str = find_str:gsub("[%-%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%0")
-                return str:gsub(escaped_find_str, replace_str)
-            end
-            
-            local letters = {
-                ["A"] = "Α", ["a"] = "α",
-                ["B"] = "Β", ["b"] = "b",
-                ["C"] = "С", ["c"] = "с",
-                ["D"] = "D", ["d"] = "ԁ",
-                ["E"] = "Ε", ["e"] = "ȩ",
-                ["F"] = "Ғ", ["f"] = "Ғ",
-                ["G"] = "ԍ", ["g"] = "ԍ",
-                ["H"] = "Η", ["h"] = "һ",
-                ["I"] = "I", ["i"] = "i",
-                ["J"] = "Ј", ["j"] = "ј",
-                ["K"] = "Κ", ["k"] = "κ",
-                ["L"] = "L", ["l"] = "ӏ",
-                ["M"] = "Μ", ["m"] = "м",
-                ["N"] = "Ν", ["n"] = "n",
-                ["O"] = "Ο", ["o"] = "ο",
-                ["P"] = "Ρ", ["p"] = "р",
-                ["Q"] = "Ԛ", ["q"] = "ԛ",
-                ["R"] = "R", ["r"] = "ᴦ",
-                ["S"] = "Ṡ", ["s"] = "ş",
-                ["T"] = "Τ", ["t"] = "t",
-                ["U"] = "ᴜ", ["u"] = "u",
-                ["V"] = "Ѵ", ["v"] = "ѵ",
-                ["W"] = "Ԝ", ["w"] = "ԝ",
-                ["X"] = "Χ", ["x"] = "x",
-                ["Y"] = "Υ", ["y"] = "ƴ",
-                ["Z"] = "Ζ", ["z"] = "ᴢ"
-            }
-            
-            local function filter(message)
-                for search, replacement in pairs(letters) do
-                    message = replace(message, search, replacement)
-                end
-                return message
-            end
-            
-            local function clearlogsf()
-                for i = 1, 19 do
-                    chat:SendAsync("")
-                end
-            end
-            
-            clearlogs.MouseButton1Click:Connect(function()
-                clearlogsf()
-            end)
-            
-            box:GetPropertyChangedSignal("Text"):Connect(function()
-                if #box.Text > 0 then
-                    bar.send.ImageLabel.ImageColor3 = Color3.fromRGB(255, 255, 255)
-                elseif #box.Text > 200 or #box.Text == 0 then
-                    bar.send.ImageLabel.ImageColor3 = Color3.fromRGB(131, 131, 131)
+    pcall(function()
+        local discord = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/Discord%20Inviter/Loader.lua"))()
+        discord:invite("https://discord.gg/c3AbX3GXsr", "Skires stuff", function()end)
+    end)
+    local n = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+    local ts = game:GetService("TweenService")
+    local ti = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
+    local ui = initui().UI
+    
+    local upperbar = ui.upperbar
+    local bar = ui.bar
+    local max = ui.maximize
+    local mini = upperbar.minimize
+    local settings = upperbar.settings
+    local send = bar.send
+    local clearlogs = bar.clear
+    local box = bar.messagebox
+    
+    pcall(function()
+        n:Notify(
+            {Title = "Simplebypass", Description = "CREDITS:\n\tSkire - Only Dev"},
+            {OutlineColor = Color3.new(255, 255, 255),Time = 7, Type = "image"},
+            {Image = "rbxassetid://18481362660", ImageColor = Color3.fromRGB(255, 255, 255)}
+        )
+    end)
+    -- Animations setup
+    local function expand()
+        ts:Create(ui, ti, { Size = UDim2.new(0, 322, 0, 109) }):Play()
+        ts:Create(ui, ti, { Position = UDim2.new(ui.Position.X.Scale, ui.Position.X.Offset + 140, ui.Position.Y.Scale, ui.Position.Y.Offset) }):Play()
+        upperbar.Visible = true
+        bar.Visible = true
+        max.Visible = false
+        ui.logo.Visible = false
+    end
+    
+    local function minimize()
+        ts:Create(ui, ti, { Size = UDim2.new(0, 47, 0, 83) }):Play()
+        ts:Create(ui, ti, { Position = UDim2.new(ui.Position.X.Scale, ui.Position.X.Offset - 140, ui.Position.Y.Scale, ui.Position.Y.Offset) }):Play()
+        upperbar.Visible = false
+        bar.Visible = false
+        max.Visible = true
+        ui.logo.Visible = true
+    end
+    
+    max.MouseButton1Click:Connect(expand)
+    mini.MouseButton1Click:Connect(minimize)
+    
+    -- Event handling for settings, clearlogs, send button interactions
+    settings.MouseEnter:Connect(function()
+        settings.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    end)
+    settings.MouseLeave:Connect(function()
+        settings.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+    end)
+    
+    clearlogs.MouseEnter:Connect(function()
+        clearlogs.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        clearlogs.ImageLabel.ImageColor3 = Color3.fromRGB(255, 255, 255)
+    end)
+    clearlogs.MouseLeave:Connect(function()
+        clearlogs.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+        clearlogs.ImageLabel.ImageColor3 = Color3.fromRGB(131,131,131)
+    end)
+    
+    send.MouseEnter:Connect(function()
+        send.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        send.Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    end)
+    send.MouseLeave:Connect(function()
+        send.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+        send.Frame.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    end)
+    
+    -- Dragging functionality
+    local function update(input)
+        local delta = input.Position - dragStart
+        ui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+    
+    ui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = ui.Position
+    
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
                 end
             end)
-            local function sendchat(msg)
-                if tcs.ChatVersion == Enum.ChatVersion.LegacyChatService then
-                    game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(msg,"All")
-                else
-                    chat:SendAsync(msg)
-                end
+        end
+    end)
+    
+    ui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+    
+    -- Main functionality (assuming this is where you have your main logic)
+    pcall(function()
+        local tcs = game:GetService("TextChatService")
+        local chat = tcs.ChatInputBarConfiguration.TargetTextChannel
+        
+        local function replace(str, find_str, replace_str)
+            local escaped_find_str = find_str:gsub("[%-%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%0")
+            return str:gsub(escaped_find_str, replace_str)
+        end
+        
+        local letters = {
+            ["A"] = "Α", ["a"] = "α",
+            ["B"] = "Β", ["b"] = "b",
+            ["C"] = "С", ["c"] = "с",
+            ["D"] = "D", ["d"] = "ԁ",
+            ["E"] = "Ε", ["e"] = "ȩ",
+            ["F"] = "Ғ", ["f"] = "Ғ",
+            ["G"] = "ԍ", ["g"] = "ԍ",
+            ["H"] = "Η", ["h"] = "һ",
+            ["I"] = "I", ["i"] = "i",
+            ["J"] = "Ј", ["j"] = "ј",
+            ["K"] = "Κ", ["k"] = "κ",
+            ["L"] = "L", ["l"] = "ӏ",
+            ["M"] = "Μ", ["m"] = "м",
+            ["N"] = "Ν", ["n"] = "n",
+            ["O"] = "Ο", ["o"] = "ο",
+            ["P"] = "Ρ", ["p"] = "р",
+            ["Q"] = "Ԛ", ["q"] = "ԛ",
+            ["R"] = "R", ["r"] = "ᴦ",
+            ["S"] = "Ṡ", ["s"] = "ş",
+            ["T"] = "Τ", ["t"] = "t",
+            ["U"] = "ᴜ", ["u"] = "u",
+            ["V"] = "Ѵ", ["v"] = "ѵ",
+            ["W"] = "Ԝ", ["w"] = "ԝ",
+            ["X"] = "Χ", ["x"] = "x",
+            ["Y"] = "Υ", ["y"] = "ƴ",
+            ["Z"] = "Ζ", ["z"] = "ᴢ"
+        }
+        
+        local function filter(message)
+            for search, replacement in pairs(letters) do
+                message = replace(message, search, replacement)
             end
-            box.FocusLost:Connect(function(enterPressed)
-                if enterPressed then
-                    sendchat(filter(box.Text))
-                    box.Text = ""
-                end
-            end)
-            
-            send.MouseButton1Click:Connect(function()
+            return message
+        end
+        
+        local function clearlogsf()
+            for i = 1, 19 do
+                chat:SendAsync("")
+            end
+        end
+        
+        clearlogs.MouseButton1Click:Connect(function()
+            clearlogsf()
+        end)
+        
+        box:GetPropertyChangedSignal("Text"):Connect(function()
+            if #box.Text > 0 then
+                bar.send.ImageLabel.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            elseif #box.Text > 200 or #box.Text == 0 then
+                bar.send.ImageLabel.ImageColor3 = Color3.fromRGB(131, 131, 131)
+            end
+        end)
+        local function sendchat(msg)
+            if tcs.ChatVersion == Enum.ChatVersion.LegacyChatService then
+                game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(msg,"All")
+            else
+                chat:SendAsync(msg)
+            end
+        end
+        box.FocusLost:Connect(function(enterPressed)
+            if enterPressed then
                 sendchat(filter(box.Text))
                 box.Text = ""
-            end)
+            end
+        end)
+        
+        send.MouseButton1Click:Connect(function()
+            sendchat(filter(box.Text))
+            box.Text = ""
         end)
     end)
 end)
