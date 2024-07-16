@@ -482,11 +482,7 @@ end
 spawn(function()
     --local discord = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/Discord%20Inviter/Loader.lua"))()
     --discord:invite("https://discord.gg/c3AbX3GXsr", "Skires stuff", function()end)
-    local loader = initloader().UI
-    loader.Join.MouseButton1Click:Connect(function()
-        setclipboard("https://discord.gg/c3AbX3GXsr")
-    end)
-    loader.Nevermind.MouseButton1Click:Connect(function()
+    local function a()
         local ts = game:GetService("TweenService")
         local ti = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
         local ui = initui().UI
@@ -499,7 +495,7 @@ spawn(function()
         local send = bar.send
         local clearlogs = bar.clear
         local box = bar.messagebox
-        
+
         -- Animations setup
         local function expand()
             ts:Create(ui, ti, { Size = UDim2.new(0, 322, 0, 109) }):Play()
@@ -662,5 +658,15 @@ spawn(function()
                 box.Text = ""
             end)
         end)
+    end
+    local loader = initloader()
+    loader.UI.Join.MouseButton1Click:Connect(function()
+        setclipboard("https://discord.gg/c3AbX3GXsr")
+        a()
+        loader:Destroy()
+    end)
+    loader.UI.Nevermind.MouseButton1Click:Connect(function()
+        a()
+        loader:Destroy()
     end)
 end)
