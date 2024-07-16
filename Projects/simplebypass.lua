@@ -8,6 +8,7 @@ CHANGE LOG:
 [7/15/24 | +] Added support for LegacyChatService
 [7/15/24 | +] Added support for lowercase characters (uppercase is better than lowercase)
 [7/15/24 | -] Messages arnt automatically made uppercase anymore
+[7/16/24 | +] Fixed the characters `R, S, U`
 
 INFO:
 settings button does nothing rn,
@@ -412,14 +413,14 @@ spawn(function()
                 ["K"] = "Κ", ["k"] = "κ",
                 ["L"] = "L", ["l"] = "ӏ",
                 ["M"] = "Μ", ["m"] = "м",
-                ["N"] = "Ν", ["n"] = "п",
+                ["N"] = "Ν", ["n"] = "n",
                 ["O"] = "Ο", ["o"] = "ο",
                 ["P"] = "Ρ", ["p"] = "р",
                 ["Q"] = "Ԛ", ["q"] = "ԛ",
-                ["R"] = "Ŗ", ["r"] = "ᴦ",
-                ["S"] = "Ș", ["s"] = "ş",
+                ["R"] = "R", ["r"] = "ᴦ",
+                ["S"] = "Ṡ", ["s"] = "ş",
                 ["T"] = "Τ", ["t"] = "τ",
-                ["U"] = "Џ", ["u"] = "џ",
+                ["U"] = "ᴜ", ["u"] = "u",
                 ["V"] = "Ѵ", ["v"] = "ѵ",
                 ["W"] = "Ԝ", ["w"] = "ԝ",
                 ["X"] = "Χ", ["x"] = "x",
