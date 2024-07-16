@@ -1,4 +1,20 @@
 --[[ simple bypass
+BEFORE YOU USE: im not trying to make a good bypasser this is just something i made for fun, i dont care how bad or how good it is
+
+CHANGE LOG:
+[7/14/24 | +] Modern UI
+[7/14/24 | +] Support for every english character
+[7/15/24 | +] Replaced some characters and made it WAY better
+[7/15/24 | +] Added support for LegacyChatService
+[7/15/24 | +] Added support for lowercase characters (uppercase is better than lowercase)
+[7/15/24 | -] Messages arnt automatically made uppercase anymore
+
+INFO:
+settings button does nothing rn,
+while making v1 and v2 in the span of 3 days i havent been banned or gotten a warning about bypassing chat only a warning for spamming, so you shouldnt get banned while using this
+
+version: 2.3
+
 888888b. Y88b   d88P       .d8888b.  888    d8P  8888888 8888888b.  8888888888 
 888  "88b Y88b d88P       d88P  Y88b 888   d8P     888   888   Y88b 888        
 888  .88P  Y88o88P        Y88b.      888  d8P      888   888    888 888        
