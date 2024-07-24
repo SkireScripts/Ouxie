@@ -202,7 +202,7 @@ end
 
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Assets/Ouxie%20UI.lua"))()
 ui:Window({
-	Name ="Ouxie / Elemental Powers Tycoon";
+	Name ="SumitScripts Hub/ Elemental Powers Tycoon";
 	Size = UDim2.new(0,350,0,370);
 })
 
